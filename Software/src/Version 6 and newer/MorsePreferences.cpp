@@ -92,6 +92,9 @@ const char * prefName[] = {
 #ifdef CONFIG_BLUETOOTH_KEYBOARD
 					  "bluetoothOut", "btARkey",
 #endif
+#ifdef CONFIG_USB_HOSTIO
+            "usbOut",
+#endif
 #ifdef CONFIG_TFT
             "theme",
 #endif
@@ -493,6 +496,16 @@ parameter MorsePreferences::pliste[] = {
     "Bluetooth A R character"
   },
 #endif
+#ifdef CONFIG_USB_HOSTIO
+  {
+    USB_OUT_MIDI, USB_OUT_OFF, USB_OUT_MIDI, 1,                 // VK1HF mod - see USB_OUT_* in morsedefs.h
+    "USB Output",
+    "CW Keyer: what the USB cable sends - nothing, vBand keyboard (Left Ctrl) or MIDI paddles (notes 20/21)",
+    true,
+    {"Off (charge)", "VBand", "MIDI"},
+    "USB output"
+  },
+#endif
 #ifdef CONFIG_TFT
   {
     0, 0, 8, 1,
@@ -696,6 +709,11 @@ FilePart MorsePreferences::fileParts[MAX_FILE_PARTS];
 #else
 #define INVORIENT
 #endif
+#ifdef CONFIG_USB_HOSTIO
+#define USBOUT posUsbOut,
+#else
+#define USBOUT
+#endif
 #ifdef CONFIG_BLUETOOTH_KEYBOARD
 #define BLUE posBluetoothOut, posBluetoothARkey,
 #else
@@ -713,7 +731,7 @@ FilePart MorsePreferences::fileParts[MAX_FILE_PARTS];
 #endif
 
 
-  prefPos MorsePreferences::keyerOptions[] =     { PREFPOS_COMMON_CORE LINEOUT THEME SCROLLFONT BLUE posSerialOut, posPolarity, posExtPddlPolarity,
+  prefPos MorsePreferences::keyerOptions[] =     { PREFPOS_COMMON_CORE LINEOUT THEME SCROLLFONT BLUE USBOUT posSerialOut, posPolarity, posExtPddlPolarity,
 
                                                    posCurtisMode, posCurtisBDahTiming, posCurtisBDotTiming, posACS,  posInterWordSpace, posLatency,
                                                    DECCHARS
@@ -1985,6 +2003,9 @@ boolean MorsePreferences::storedInSnapshot(prefPos pos) {
 #ifdef CONFIG_BLUETOOTH_KEYBOARD
       case posBluetoothOut:
       case posBluetoothARkey:
+#endif
+#ifdef CONFIG_USB_HOSTIO
+      case posUsbOut:
 #endif
       // game / QSO Bot settings:
 #ifdef CONFIG_CW_GAME
