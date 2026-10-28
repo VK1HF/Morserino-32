@@ -1,3 +1,5 @@
+> **This is VK1HF's copy** of the Morserino-32 repository, with a few additions for the M32 Pocket (vBand and CTR2-MIDI compatible MIDI over the USB cable, and more). See **[VK1HF-ADDITIONS.md](VK1HF-ADDITIONS.md)**. The official repository is [oe1wkl/Morserino-32](https://github.com/oe1wkl/Morserino-32).
+
 # Morserino-32
 Morserino-32 multi-functional Morse code machine, based on ESP32
 
