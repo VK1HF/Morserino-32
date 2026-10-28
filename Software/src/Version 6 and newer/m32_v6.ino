@@ -1140,6 +1140,9 @@ void displayStartUp(uint16_t volt) {
     s += ".";
     s += VERSION_PATCH;
   }
+#ifdef VERSION_SUFFIX
+  s += VERSION_SUFFIX;
+#endif
 
   if (BETA) {
     s += "b ";
