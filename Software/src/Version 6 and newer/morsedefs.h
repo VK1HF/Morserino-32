@@ -45,6 +45,9 @@ const char* const COPYRIGHT = "\xc2\xa9 2018-2026";  // © in UTF-8
 #define VERSION_PATCH 0
 
 #define BETA true
+// VK1HF additions (USB Output, straight-key MIDI, memory repeat pause) - shown after the version on the
+// boot screen only. The M32 protocol keeps reporting the plain version, which the tools compare.
+#define VERSION_SUFFIX ".VK1HF++"
 #define COMPILEDATE __DATE__
 
 
