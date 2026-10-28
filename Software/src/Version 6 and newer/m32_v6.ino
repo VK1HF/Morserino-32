@@ -148,6 +148,9 @@ boolean executeMenu = false;
 boolean executeNow = false;
 boolean playCW = false;
 boolean repeatPlayCW = false;
+// VK1HF mod: a repeating memory (1, 2) waits this long before it starts over - time for a reply.
+static const unsigned long MEM_REPEAT_PAUSE_MS = 6000;
+static boolean playCWWrapped = false;   // set by getM32PWord() when a repeating memory starts over
 String playCWBuffer;
 uint8_t playCWIndex = 0;
 uint8_t playCWMaxIndex = 0;
@@ -2965,6 +2968,10 @@ void fetchNewWord() {
         clearText.replace("T", "");
         if (clearText.indexOf('P') != -1) {
             genTimer = 3 * interWordSpace + millis();
+            if (playCWWrapped) {                // VK1HF mod: repeating memory - pause before it starts over
+                playCWWrapped = false;
+                genTimer = MEM_REPEAT_PAUSE_MS + millis();
+            }
             clearText = "";
         }
         CWword = generateCWword(clearText); CWwordPos = 0;
@@ -4582,11 +4589,15 @@ String getM32PWord() {
   result.reserve(128);
   byte c;
 
-  if (playCWIndex >= playCWMaxIndex)
-    if (repeatPlayCW)
+  if (playCWIndex >= playCWMaxIndex) {
+    if (repeatPlayCW) {
       playCWIndex = 0;
+      playCWWrapped = true;               // generateCW() turns this pause word into the repeat pause
+      return "P";
+    }
     else
       return "";
+  }
   while (playCWIndex < playCWMaxIndex) {
     c = playCWBuffer.charAt(playCWIndex);
     ++playCWIndex;
@@ -6048,6 +6059,7 @@ void selectWifi(int i) {
 
 
 void stopPlayCw() {     /// sort of emergency stop for M32p cw/play
+  playCWWrapped = false;
             keyOut(false,true,0,0);
             playCW = false;
             repeatPlayCW = false;
