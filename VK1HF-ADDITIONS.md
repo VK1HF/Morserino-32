@@ -9,7 +9,7 @@ This is **Ian Gilchrist VK1HF's copy** of the official [Morserino-32 repository]
 | Feature | What it does |
 |---|---|
 | **USB:VBAND out** | Use vBand over the **USB cable** instead of Bluetooth. Never both at once |
-| **USB:MIDI out (CTR2-MIDI)** | The Pocket acts like a **Lynovation CTR2-MIDI**: paddles as MIDI notes 20/21; a straight key and keyer memories as note 30. For example, key a FlexRadio from **SmartSDR for macOS (DL8MRE)** |
+| **USB:MIDI out (CTR2-MIDI)** | The Pocket acts like a **Lynovation CTR2-MIDI**: paddles as MIDI notes 20/21, a straight key as note 30, and keyer memories sent the same way a person would send them. For example, key a FlexRadio from **SmartSDR for macOS (DL8MRE)** |
 | **Memory repeat pause** | CW Keyer memories R1 and R2 wait 6 seconds before repeating, giving time for a reply to your CQ |
 | **Version mark** | The boot screen shows e.g. **V10.0.VK1HF++**, so you can tell this firmware is running |
 

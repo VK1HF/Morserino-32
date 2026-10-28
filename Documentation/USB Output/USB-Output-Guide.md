@@ -72,7 +72,12 @@ Note 30 is the CTR2-MIDI's straight-key note, from its *Extended* paddle mode. I
 
 ### Keyer memories
 
-A **keyer memory** also goes out over MIDI, as **note 30**. A memory has no paddle movements to send, so the Morserino sends the CW it plays, element by element, as a straight key would. **Map button 30 even if you only use paddles**, otherwise your memories are heard on the Morserino but never reach the radio. Touching a paddle stops a playing memory, so paddle notes and note 30 never overlap, and the radio is never keyed twice.
+A **keyer memory** goes out over MIDI exactly as a person would send it with what you have set up:
+
+- **Paddle modes** (Iambic, Ultimatic, Non-Squeeze): the memory **taps the paddles**. Each dit is a short press of note 20, each dah a press of note 21, held for half the element and then released, so the application's keyer forms the CW. You need nothing beyond the 20/21 mapping. Because the application's keyer does the timing, **its speed must match the Morserino's**, or letters come out wrong.
+- **Straight Key mode:** the memory works the straight key, as note 30.
+
+Touching a paddle stops a playing memory, as always.
 
 ### Example: SmartSDR for macOS (DL8MRE) with a FlexRadio
 
@@ -81,12 +86,12 @@ A **keyer memory** also goes out over MIDI, as **note 30**. A memory has no padd
 1. Connect the Morserino to the Mac with a USB data cable. Start **CW Keyer** and set **USB Output → MIDI**.
 2. In SmartSDR, choose **"Morserino-32 Pocket (USB kbd+MIDI)"** as the MIDI device.
 3. Map **button 20 → CW Left Paddle** and **button 21 → CW Right Paddle**, as the CTR2-MIDI manual describes. If you used a CTR2-MIDI before, this mapping is already in place.
-4. Also map **button 30 → CW Straight Key**, for keyer memories and a straight key.
+4. If you use **Straight Key** mode, also map **button 30 → Trigger CW Straight Key**, as the CTR2-MIDI manual describes.
 
 You can now use your Morserino as the paddle interface for the radio. Connect your own paddle or key to the Morserino's paddle socket, or use the Pocket's touch paddles.
 
 ::: note
-**Set the Morserino to the same keying speed (WPM) as SmartSDR.** In this mode SmartSDR's own keyer turns your paddle presses into the CW that is transmitted, while the Morserino's sidetone comes from *its* keyer. If the two speeds differ, what you hear from the Morserino is not what goes out on the air. Use the same keyer mode (for example Iambic B) on both, too. Alternatively, turn the Morserino's sidetone down and listen to the radio's.
+**Set the Morserino to the same keying speed (WPM) as SmartSDR.** In the paddle modes SmartSDR's own keyer turns your paddle presses, and a memory's paddle taps, into the CW that is transmitted, while the Morserino's sidetone comes from *its* keyer. If the two speeds differ, what you hear from the Morserino is not what goes out on the air, and memories can come out garbled. Use the same keyer mode (for example Iambic B) on both, too. Alternatively, turn the Morserino's sidetone down and listen to the radio's.
 :::
 
 To check that notes arrive on a Mac, the free app [MIDI Monitor](https://www.snoize.com/midimonitor/) shows each one. MIDI Monitor names note 20 "G♯-1" and note 21 "A-1".
